@@ -1,6 +1,6 @@
+package week1;
 
 
-import java.util.ArrayList;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.StdRandom;
 
