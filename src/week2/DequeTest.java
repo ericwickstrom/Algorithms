@@ -51,6 +51,18 @@ public class DequeTest {
 		deque.removeLast();
 	}
 	
+	@Test(expected = NullPointerException.class)
+	public void addFirstNullShouldThrowNullPointerException(){
+		Deque<Integer> deque = new Deque<Integer>();
+		deque.addFirst(null);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void addLastNullShouldThrowNullPointerException(){
+		Deque<Integer> deque = new Deque<Integer>();
+		deque.addLast(null);
+	}
+	
 	@Test
 	public void removeFirstTest(){
 		Deque<Integer> deque = new Deque<Integer>();
@@ -62,16 +74,23 @@ public class DequeTest {
 	public void removeFirstWhenLastHasBeenAddedButNotFirst(){
 		Deque<Integer> deque = new Deque<Integer>();
 		deque.addLast(4);
+		deque.addLast(1);
+		deque.addLast(2);
+		deque.addLast(5);
+		deque.addLast(7);
 		deque.addLast(3);
-		assertEquals(Integer.valueOf(3), deque.removeFirst());
+		assertEquals(Integer.valueOf(4), deque.removeFirst());
 	}
 	
 	@Test
 	public void removeLastWhenFirsttHasBeenAddedButNotLast(){
 		Deque<Integer> deque = new Deque<Integer>();
 		deque.addFirst(3);
+		deque.addFirst(1);
+		deque.addFirst(2);
+		deque.addFirst(5);
 		deque.addFirst(4);
-		assertEquals(Integer.valueOf(4), deque.removeLast());
+		assertEquals(Integer.valueOf(3), deque.removeLast());
 	}
 	@Test
 	public void removeLast(){
@@ -153,20 +172,15 @@ public class DequeTest {
 	public void removeLastTest(){
 		Deque<Integer> deque = new Deque<Integer>();
 		deque.addLast(5);
+
 		assertEquals(Integer.valueOf(5), deque.removeLast());
 	}
 	
-	@Test
-	public void getArrayInOrderTest(){
+	@Test (expected = UnsupportedOperationException.class)
+	public void iteratorRemoveShouldThrowUnsupportedOperationException(){
 		Deque<Integer> deque = new Deque<Integer>();
-		deque.addFirst(2);
-		print(deque);
-		deque.addFirst(1);
-		print(deque);
-		deque.addLast(3);
-		print(deque);
-		deque.addLast(4);
-		print(deque);
+		Iterator it = deque.iterator();
+		it.remove();
 	}
 	
 }
